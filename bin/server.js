@@ -79,6 +79,19 @@ const init = async () => {
     }
   });
 
+  server.route({
+    method: 'GET',
+    path: '/users/{param*}',
+    config: {
+      auth: false
+    },
+    handler: {
+      directory : {
+        path : 'public'
+      }
+    }
+  });
+
   await server.start();
   return server;
 };
