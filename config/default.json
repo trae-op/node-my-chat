@@ -9,7 +9,9 @@
   "messages": {
     "deleted": "Successfully deleted!",
     "fields_valid_messagesByUser": "The field is empty or symbols number are less 3!",
-    "fields_valid_register": "Some fields are incorrect!",
+    "fields_valid_register": "Some fields when register are incorrect!",
+    "fields_valid_notifications": "Some notification fields are not exist or empty!",
+    "fields_valid_private_dialogues": "Something wrong with private dialogues fields!",
     "api_page": {
       "title": "API Documentation for \"App My English\""
     },
@@ -23,6 +25,43 @@
         "delete_by_id": "Error when removing the message by ID!",
         "add": "Error when add a new message!",
         "update": "Error when update of message!"
+      }
+    },
+    "notificationsByUser": {
+      "errors": {
+        "list": "Error when return the notifications list!",
+        "get_by_id": "Error when return the notification by ID!",
+        "delete_by_id": "Error when removing the notification by ID!",
+        "add": "Error when add a new notification!",
+        "update": "Error when update of notification!",
+        "having": "This notification is already existing!",
+        "not_exit": "That's a notification is not exist!"
+      },
+      "notificationType": {
+        "invite": {
+          "type": "face-to-face-invite",
+          "message": "invite you for personal correspondence!"
+        },
+        "denied": {
+          "type": "face-to-face-removed",
+          "message": "denied you personal correspondence!"
+        },
+        "approved": {
+          "type": "face-to-face-approved",
+          "message": "approved personal correspondence request! You can go to top right menu and click \"private dialogues\""
+        },
+        "missing": "Type is missing!"
+      }
+    },
+    "privateDialogues": {
+      "errors": {
+        "list": "Error when return the private dialogues list!",
+        "get_by_id": "Error when return the private dialog by ID!",
+        "delete_by_id": "Error when removing the private dialog by ID!",
+        "add": "Error when add a new private dialog!",
+        "update": "Error when update of private dialog!",
+        "having": "This private dialog is already existing!",
+        "not_exit": "That's a private dialog is not exist!"
       }
     },
     "users": {

@@ -8,20 +8,21 @@ const Boom = require('boom');
 
 const main = require('../lib/main');
 
-class Messages {
+class PrivateMessages {
 
   constructor(mongoose, connection) {
     this.Schema = mongoose.Schema;
 
-    this.MessagesSchema = new this.Schema({
+    this.PrivateMessagesSchema = new this.Schema({
       ava: String,
       name: String,
       message: String,
+      private_dialog_id: String,
       creator_email: String,
       created_at: String
     });
 
-    this.model = connection.model('messages', this.MessagesSchema);
+    this.model = connection.model('privateMessage', this.PrivateMessagesSchema);
   }
 
 
@@ -113,4 +114,4 @@ class Messages {
 
 }
 
-module.exports = Messages;
+module.exports = PrivateMessages;

@@ -11,6 +11,10 @@ const users = require('../handlers/users');
 
 const routesUsers = require('../routes/users');
 const routesMessages = require('../routes/messages');
+const routesNotifications = require('../routes/notifications');
+const privateMessages = require('../routes/privateMessages');
+const privateDialogues = require('../routes/privateDialogues');
+const anyParams = require('../routes/anyParams');
 
 const privateKey = config.get('jwt_private_key');
 
@@ -35,62 +39,14 @@ const init = async () => {
 
   let allRoutes = _.concat(
     routesUsers,
-    routesMessages
+    routesMessages,
+    routesNotifications,
+    privateMessages,
+    privateDialogues,
+    anyParams
   );
 
   server.route(allRoutes);
-
-  server.route({
-    method: 'GET',
-    path: '/{param*}',
-    config: {
-      auth: false
-    },
-    handler: {
-      directory : {
-        path : 'public'
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/auth/{param*}',
-    config: {
-      auth: false
-    },
-    handler: {
-      directory : {
-        path : 'public'
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/chat/{param*}',
-    config: {
-      auth: false
-    },
-    handler: {
-      directory : {
-        path : 'public'
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/users/{param*}',
-    config: {
-      auth: false
-    },
-    handler: {
-      directory : {
-        path : 'public'
-      }
-    }
-  });
 
   await server.start();
   return server;
