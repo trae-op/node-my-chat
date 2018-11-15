@@ -52,7 +52,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/private_dialog/{param*}',
+    path: '/chat/private_dialog/{param*}',
     config: {
       auth: false
     },
