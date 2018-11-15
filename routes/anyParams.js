@@ -49,5 +49,17 @@ module.exports = [
         path : 'public'
       }
     }
+  },
+  {
+    method: 'GET',
+    path: '/private_dialog/{param*}',
+    config: {
+      auth: false
+    },
+    handler: {
+      directory : {
+        path : 'public'
+      }
+    }
   }
 ];
