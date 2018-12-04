@@ -1,0 +1,6 @@
+{
+  "basepath": "migrations",
+  "connection": "mongodb://chat:darkmanx1988@ds141783.mlab.com:41783/chat",
+  "current_timestamp": 1519997752113,
+  "models": {}
+}

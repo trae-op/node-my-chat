@@ -8,7 +8,7 @@ module.exports = [
     path: '/api/privateMessages',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.getPrivateMessages
   },
@@ -16,7 +16,7 @@ module.exports = [
     path: '/api/privateMessages/{n}/{limit}/{id}',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.getPrivateMessagesByLimit
   },
@@ -24,7 +24,7 @@ module.exports = [
     path: '/api/privateMessages/{privateMessage_id}',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.getPrivateMessageById
   },
@@ -32,7 +32,7 @@ module.exports = [
     path: '/api/privateMessages',
     method: 'POST',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.addPrivateMessage
   },
@@ -40,7 +40,7 @@ module.exports = [
     path: '/api/privateMessages/{privateMessage_id}',
     method: 'DELETE',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.deletePrivateMessageById
   },
@@ -48,7 +48,7 @@ module.exports = [
     path: '/api/privateMessages',
     method: 'PUT',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateMessages.updatePrivateMessage
   }

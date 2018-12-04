@@ -8,7 +8,7 @@ module.exports = [
     path: '/api/notifications',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: notifications.getNotifications
   },
@@ -24,7 +24,7 @@ module.exports = [
     path: '/api/notifications',
     method: 'POST',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: notifications.addNotification
   },
@@ -32,7 +32,7 @@ module.exports = [
     path: '/api/notifications/{notification_id}',
     method: 'DELETE',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: notifications.deleteNotificationById
   }

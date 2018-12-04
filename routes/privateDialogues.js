@@ -8,7 +8,7 @@ module.exports = [
     path: '/api/privateDialogues',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateDialogues.getPrivateDialogues
   },
@@ -16,7 +16,7 @@ module.exports = [
     path: '/api/privateDialogues/{privateDialog_id}',
     method: 'GET',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateDialogues.getPrivateDialogById
   },
@@ -24,7 +24,7 @@ module.exports = [
     path: '/api/privateDialogues',
     method: 'POST',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateDialogues.addPrivateDialog
   },
@@ -32,7 +32,7 @@ module.exports = [
     path: '/api/privateDialogues/{privateDialog_id}',
     method: 'DELETE',
     config: {
-      auth: false
+      auth: 'jwt'
     },
     handler: privateDialogues.deletePrivateDialogById
   }
