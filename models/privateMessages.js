@@ -19,7 +19,8 @@ class PrivateMessages {
       message: String,
       private_dialog_id: String,
       creator_email: String,
-      created_at: String
+      created_at: String,
+      date: String
     });
 
     this.model = connection.model('privateMessage', this.PrivateMessagesSchema);
@@ -38,6 +39,25 @@ class PrivateMessages {
       });
     });
   }
+
+  listByLimit (params) {
+    return new Promise( (resolve, reject) => {
+      this.model
+        .find({private_dialog_id: params.id})
+        .limit(+params.limit)
+        .skip((+params.limit) * params.n)
+        .sort({date: -1})
+        .exec((err, doc) => {
+          if (err) {
+            console.log(err);
+            reject(Boom.badRequest(config.get('messages.messagesByUser.errors.limit')));
+          } else {
+            resolve(doc.reverse());
+          }
+        });
+    });
+  }
+
   getById (id) {
     return new Promise( (resolve, reject) => {
       this.model.findById(id, (err, doc) => {
@@ -61,9 +81,12 @@ class PrivateMessages {
     });
   }
   add (body) {
-    let newData = new this.model(body);
+    const newData = new this.model(body);
+    const currentDate = new Date();
+    const currentTime = currentDate.setDate(currentDate.getDate());
+
     return new Promise( (resolve, reject) => {
-      newData.created_at = main.currentTime();
+      newData.date = currentTime;
 
       let { message } = newData;
 
@@ -88,7 +111,6 @@ class PrivateMessages {
         .then( docFind => {
 
           docFind.message = body.message;
-          docFind.created_at = main.currentTime();
 
           let { message } = docFind;
 

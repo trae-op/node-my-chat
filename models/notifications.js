@@ -96,7 +96,6 @@ class Notifications {
         })
         .catch(() => {
           const notificationMessage = value => newData.message = `<strong>${newData.user.name}</strong> ${value}`;
-          newData.created_at = main.currentTime();
 
           switch(newData.type) {
             case config.get('messages.notificationsByUser.notificationType.invite.type'):

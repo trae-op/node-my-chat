@@ -13,6 +13,14 @@ module.exports = [
     handler: privateMessages.getPrivateMessages
   },
   {
+    path: '/api/privateMessages/{n}/{limit}/{id}',
+    method: 'GET',
+    config: {
+      auth: false
+    },
+    handler: privateMessages.getPrivateMessagesByLimit
+  },
+  {
     path: '/api/privateMessages/{privateMessage_id}',
     method: 'GET',
     config: {

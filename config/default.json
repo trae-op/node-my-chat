@@ -24,7 +24,8 @@
         "get_by_id": "Error when return the message by ID!",
         "delete_by_id": "Error when removing the message by ID!",
         "add": "Error when add a new message!",
-        "update": "Error when update of message!"
+        "update": "Error when update of message!",
+        "limit": "Error when return the messages list by limit!"
       }
     },
     "notificationsByUser": {

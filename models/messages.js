@@ -18,7 +18,8 @@ class Messages {
       name: String,
       message: String,
       creator_email: String,
-      created_at: String
+      created_at: String,
+      date: String
     });
 
     this.model = connection.model('messages', this.MessagesSchema);
@@ -37,6 +38,25 @@ class Messages {
       });
     });
   }
+
+  listByLimit (params) {
+    return new Promise( (resolve, reject) => {
+      this.model
+        .find({})
+        .limit(+params.limit)
+        .skip((+params.limit) * params.n)
+        .sort({date: -1})
+        .exec((err, doc) => {
+          if (err) {
+            console.log(err);
+            reject(Boom.badRequest(config.get('messages.messagesByUser.errors.limit')));
+          } else {
+            resolve(doc.reverse());
+          }
+        });
+    });
+  }
+
   getById (id) {
     return new Promise( (resolve, reject) => {
       this.model.findById(id, (err, doc) => {
@@ -60,9 +80,12 @@ class Messages {
     });
   }
   add (body) {
-    let newData = new this.model(body);
+    const newData = new this.model(body);
+    const currentDate = new Date();
+    const currentTime = currentDate.setDate(currentDate.getDate());
+
     return new Promise( (resolve, reject) => {
-      newData.created_at = main.currentTime();
+      newData.date = currentTime;
 
       let { message } = newData;
 
@@ -87,7 +110,6 @@ class Messages {
         .then( docFind => {
 
           docFind.message = body.message;
-          docFind.created_at = main.currentTime();
 
           let { message } = docFind;
 

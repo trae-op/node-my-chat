@@ -16,6 +16,16 @@ module.exports = {
         return error;
       });
   },
+  getPrivateMessagesByLimit: (request, h) => {
+    let params = request.params;
+    return privateMessages.listByLimit(params)
+      .then( (doc) => {
+        return doc;
+      })
+      .catch( (error) => {
+        return error;
+      });
+  },
   getPrivateMessageById: (request, h) => {
     let id = request.params.privateMessage_id;
     return privateMessages.getById(id)

@@ -18,6 +18,16 @@ module.exports = {
               return error;
             });
     },
+  getMessagesByLimit: (request, h) => {
+    let params = request.params;
+    return messages.listByLimit(params)
+      .then( (doc) => {
+        return doc;
+      })
+      .catch( (error) => {
+        return error;
+      });
+  },
     getMessageById: (request, h) => {
         let id = request.params.message_id;
         return messages.getById(id)

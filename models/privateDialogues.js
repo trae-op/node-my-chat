@@ -14,16 +14,14 @@ class PrivateDialogues {
     this.Schema = mongoose.Schema;
 
     this.PrivateDialoguesSchema = new this.Schema({
-      users: [
-        {
-          name: String,
-          email: String
-        },
-        {
-          name: String,
-          email: String
-        }
-      ],
+      interlocutor: {
+        name: String,
+        email: String
+      },
+      sender: {
+        name: String,
+        email: String
+      },
       created_at: String
     });
 
@@ -68,16 +66,16 @@ class PrivateDialogues {
 
   findPrivateDialog(newData) {
     return new Promise((resolve, reject) => {
-      this.model.find({users: [
-          {
-            name: newData.users[0].name,
-            email: newData.users[0].email
-          },
-          {
-            name: newData.users[1].name,
-            email: newData.users[1].email
-          }
-        ]}, (err, doc) => {
+      this.model.find({
+        interlocutor: {
+          name: newData.interlocutor.name,
+          email: newData.interlocutor.email
+        },
+        sender: {
+          name: newData.sender.name,
+          email: newData.sender.email
+        }
+      }, (err, doc) => {
 
         if (err) {
           reject(Boom.badRequest(config.get('messages.privateDialogues.errors.find_by_id')));
@@ -98,21 +96,20 @@ class PrivateDialogues {
 
       this.findPrivateDialog(newData)
         .then(() => {
-          reject(Boom.badRequest(config.get('messages.notificationsByUser.errors.having')));
+          reject(Boom.badRequest(config.get('messages.privateDialogues.errors.having')));
         })
         .catch(() => {
-          newData.created_at = main.currentTime();
 
-          let { users, created_at } = newData;
+          let { interlocutor, sender, created_at } = newData;
 
-          if (!main.fieldsValidPrivateDialogues({ users, created_at })) {
+          if (!main.fieldsValidPrivateDialogues({ interlocutor, sender, created_at })) {
             reject(Boom.badRequest(config.get('messages.fields_valid_private_dialogues')));
             return;
           }
 
           newData.save( (err, doc) => {
             if (err) {
-              reject(Boom.badRequest(config.get('messages.notificationsByUser.errors.add')));
+              reject(Boom.badRequest(config.get('messages.privateDialogues.errors.add')));
             } else {
               resolve(doc);
             }

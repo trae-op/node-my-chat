@@ -68,7 +68,7 @@ init().then(server => {
 
     socket.on('NewMessage', (message) => {
       console.log('Сonnection received from client: ' + message);
-      io.emit('UpdateMessage');
+      io.emit('UpdateMessage', message);
     });
   });
 

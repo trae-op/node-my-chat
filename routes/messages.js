@@ -8,9 +8,17 @@ module.exports = [
     path: '/api/messages',
     method: 'GET',
     config: {
-      auth: 'jwt'
+      auth: false
     },
     handler: messages.getMessages
+  },
+  {
+    path: '/api/messages/{n}/{limit}',
+    method: 'GET',
+    config: {
+      auth: false
+    },
+    handler: messages.getMessagesByLimit
   },
   {
     path: '/api/messages/{message_id}',
