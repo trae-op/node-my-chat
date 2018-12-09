@@ -26,7 +26,6 @@ class Messages {
   }
 
 
-
   list () {
     return new Promise( (resolve, reject) => {
       this.model.find({}, (err, doc) => {
