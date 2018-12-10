@@ -12,7 +12,6 @@ class Messages {
 
   constructor(mongoose, connection) {
     this.Schema = mongoose.Schema;
-
     this.MessagesSchema = new this.Schema({
       ava: String,
       name: String,
