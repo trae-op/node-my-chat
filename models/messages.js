@@ -25,7 +25,6 @@ class Messages {
     this.model = connection.model('messages', this.MessagesSchema);
   }
 
-
   list () {
     return new Promise( (resolve, reject) => {
       this.model.find({}, (err, doc) => {
